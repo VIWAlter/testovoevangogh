@@ -15,13 +15,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchForm = document.querySelector('.searchandbasket form');
     const searchInput = searchForm.querySelector('input');
     
-    // При клике на форму (иконку) - активируем поле ввода
     searchForm.addEventListener('click', function() {
         this.classList.add('active');
         searchInput.focus();
     });
     
-    // При потере фокуса - сворачиваем, если поле пустое
     searchInput.addEventListener('blur', function() {
         if (this.value === '') {
             searchForm.classList.remove('active');
@@ -38,12 +36,10 @@ document.addEventListener('DOMContentLoaded', function() {
   const menu = document.querySelector('.menu');
   const body = document.body;
   
-  // Создаем элемент для затемнения фона
   const overlay = document.createElement('div');
   overlay.classList.add('overlay');
   document.body.appendChild(overlay);
   
-  // Клик по бургеру
   menuToggle.addEventListener('click', function() {
       this.classList.toggle('active');
       menu.classList.toggle('active');
@@ -51,7 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
       body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
   });
   
-  // Клик по затемнению
   overlay.addEventListener('click', function() {
       menuToggle.classList.remove('active');
       menu.classList.remove('active');
@@ -59,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
       body.style.overflow = '';
   });
   
-  // Клик по ссылке в меню
   menu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', function() {
           menuToggle.classList.remove('active');
@@ -67,5 +61,28 @@ document.addEventListener('DOMContentLoaded', function() {
           overlay.classList.remove('active');
           body.style.overflow = '';
       });
+  });
+});
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const cards = document.querySelectorAll('.blockcard');
+  
+  cards.forEach(card => {
+    const firstImg = card.querySelector('.first');
+    const secondImg = card.querySelector('.second');
+    
+    function toggleActive() {
+      if (firstImg.classList.contains('active')) {
+        firstImg.classList.remove('active');
+        secondImg.classList.add('active');
+      } else {
+        secondImg.classList.remove('active');
+        firstImg.classList.add('active');
+      }
+    }
+    
+    firstImg.addEventListener('click', toggleActive);
+    secondImg.addEventListener('click', toggleActive);
   });
 });

@@ -312,11 +312,17 @@ button svg {
     width: 100%;
     border-radius: 10px;
     transition: 0.5s;
+    display: none;
+}
+
+.card .active {
+    display: block;
 }
 
 .card img:hover {
     transform: scale(1.2);
 }
+
 .card p {
     font-size: 0.8vw;
     font-weight: 700;
